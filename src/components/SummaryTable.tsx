@@ -1,9 +1,13 @@
 import React from 'react';
 
+import { generateDatesFromYearBeginning } from '../utils/generate-dates-from-year-beginning';
+
 import { HabitDay } from './HabitDay';
 
 export function SummaryTable() {
   const daysArray = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'];
+
+  const summaryDates = generateDatesFromYearBeginning();
 
   return (
     <div className='w-full flex'>
@@ -19,7 +23,9 @@ export function SummaryTable() {
       </div>
 
       <div className='grid grid-rows-7 grid-flow-col gap-3'>
-        <HabitDay />
+        {summaryDates.map((date, dateIndex) => (
+          <HabitDay key={date.toString()} />
+        ))}
       </div>
     </div>
   );
